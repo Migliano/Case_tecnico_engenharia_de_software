@@ -2,7 +2,7 @@ from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import declarative_base, sessionmaker
 
 Base = declarative_base()
-engine = create_engine('sqlite:///cadastro.db', echo=True)  #igual base alfred, tirar o echo no final!
+engine = create_engine('sqlite:///cadastro.db', echo=True)  #igual base alfred, tirar o echo em produção!
 
 class Usuario(Base):
     __tablename__ = 'cadastro_usuarios'

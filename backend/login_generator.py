@@ -2,17 +2,17 @@
 
 def gerar_login(nomeCompleto, logins_existentes):          #função para efetivamente gerar o login: passa pelos generators e compara com o banco, caso ja exista o login, tenta o proximo generator
 
-    opcoes = [
+    opcoes_de_Login = [
         login_generator1(nomeCompleto),
         login_generator2(nomeCompleto),
         login_generator3(nomeCompleto),
         login_generator4(nomeCompleto),
            ] + login_generator5(nomeCompleto)           #neste caso, decidi fazer a 5 retornar uma lista e gerar_login SOMA as 2 listas. Talvez seja mais facil de debugar 1 lista só caso de problema. Outra opção seria fazer a gerar_login interpretar a lista da 5 diferentemente de forma separada: testa as 4 e, caso nao encontre espaço vazio, ir para a 5
 
-    for opcao in opcoes:
+    for opcao_de_Login in opcoes_de_Login:
 
-        if opcao not in logins_existentes:
-            return opcao
+        if opcao_de_Login not in logins_existentes:
+            return opcao_de_Login
 
 
 def normalizar_nome (nome):                 #normalizador para tirar o espaço entre nomes e manter em letras minusculas para todos os generators
