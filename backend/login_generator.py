@@ -1,8 +1,6 @@
 nomeCompleto = 'ANA BEATRIZ FERREIRA' #simulação de nome
 
-logins_existentes = ['anabeat', 'anabera', 'anabira', 'abfanab', 'anabeat', 
-                     'nabeatz', 'abeatri', 'beatriz', 'eatrizf', 'atrizfe',
-                     'trizfer', 'rizferr', 'izferre', 'zferrei', 'ferreir', 'erreira']
+logins_existentes = ['anabeat', 'anabira', 'anabera', 'abfanab', 'nabeatr', 'abeatri', 'beatriz'] #simulação de banco de dados com logins existentes
 
 
 def normalizar_nome (nome):                 #normalizador para tirar o espaço entre nomes e manter em letras minusculas para todos os generators
