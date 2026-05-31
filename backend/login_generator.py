@@ -1,6 +1,18 @@
-nomeCompleto = 'ANA BEATRIZ FERREIRA' #simulação de nome
 
-logins_existentes = ['anabeat', 'anabira', 'anabera', 'abfanab', 'nabeatr', 'abeatri', 'beatriz'] #simulação de banco de dados com logins existentes
+
+def gerar_login(nomeCompleto, logins_existentes):          #função para efetivamente gerar o login: passa pelos generators e compara com o banco, caso ja exista o login, tenta o proximo generator
+
+    opcoes = [
+        login_generator1(nomeCompleto),
+        login_generator2(nomeCompleto),
+        login_generator3(nomeCompleto),
+        login_generator4(nomeCompleto),
+           ] + login_generator5(nomeCompleto)           #neste caso, decidi fazer a 5 retornar uma lista e gerar_login SOMA as 2 listas. Talvez seja mais facil de debugar 1 lista só caso de problema. Outra opção seria fazer a gerar_login interpretar a lista da 5 diferentemente de forma separada: testa as 4 e, caso nao encontre espaço vazio, ir para a 5
+
+    for opcao in opcoes:
+
+        if opcao not in logins_existentes:
+            return opcao
 
 
 def normalizar_nome (nome):                 #normalizador para tirar o espaço entre nomes e manter em letras minusculas para todos os generators
@@ -54,23 +66,11 @@ def login_generator5(nomeCompleto):         #generator "coringa", percorre 'jane
     return opcoesGenerator5
 
 
-def gerar_login(nomeCompleto):          #função para efetivamente gerar o login: passa pelos generators e compara com o banco, caso ja exista o login, tenta o proximo generator
+if __name__ == '__main__':
+    nomeCompleto = 'ANA BEATRIZ FERREIRA' #simulação de nome
+    logins_existentes = ['anabeat', 'anabira', 'anabera', 'abfanab', 'nabeatr', 'abeatri', 'beatriz'] #simulação de banco de dados com logins existentes
+    login = login_generator4(nomeCompleto)
+    gerar = gerar_login(nomeCompleto, logins_existentes)
 
-    opcoes = [
-        login_generator1(nomeCompleto),
-        login_generator2(nomeCompleto),
-        login_generator3(nomeCompleto),
-        login_generator4(nomeCompleto),
-           ] + login_generator5(nomeCompleto)           #neste caso, decidi fazer a 5 retornar uma lista e gerar_login SOMA as 2 listas. Talvez seja mais facil de debugar 1 lista só caso de problema. Outra opção seria fazer a gerar_login interpretar a lista da 5 diferentemente de forma separada: testa as 4 e, caso nao encontre espaço vazio, ir para a 5
-
-    for opcao in opcoes:
-
-        if opcao not in logins_existentes:
-            return opcao
-
-login = login_generator4(nomeCompleto)
-gerar = gerar_login(nomeCompleto)
-
-
-print (gerar)
+    print (gerar)
     
