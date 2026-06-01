@@ -1,6 +1,8 @@
 import pandas as pd #eu comecei a fazer por open e split mas tive um pouco de dificuldade. Fui pro pandas que tenho mais familiaridade
 from database import Usuario, Session
 
+#por enqando a estratégia vai ser colocar isso no readme e popular la, assim o banco vem vazio 100% certeza
+
 session = Session()
 
 df = pd.read_table('massa_dados.txt', sep = '|')
