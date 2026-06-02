@@ -17,6 +17,9 @@ def cadastro():
     for usuario in todos_usuarios:          #criar lista com logins ja existentes para mandar pros generators
         logins_existentes.append(usuario.login)
 
+    """ATENÇÃO: logins_existentes é passado como parâmetro e não variável global pq se fosse global,
+    ia buscar os logins só uma vez quando o servidor sobe e ficaria desatualizado conforme novos usuários entram
+    assim, cada requisição monta a lista fresh do banco antes de passar pro generator"""
     login_final = gerar_login(dados['nome'], logins_existentes)           #chama função gerar_login la do login_generator. Passa o nome completo (classe nome de "dados") e os logins_existentes (repeti o nome pra nao confundir. talvez faça a mesma coisa para o nomecompleto, vou ver se fica ruim de debugar)
     
     novo_usuario = Usuario(

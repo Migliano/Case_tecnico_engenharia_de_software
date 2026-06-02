@@ -66,6 +66,7 @@ def login_generator5(nomeCompleto):         #generator "coringa", percorre 'jane
     return opcoesGenerator5
 
 
+# roda só se executar "python login_generator.py" direto. serve pra testar os generators na mão sem precisar de banco nem de servidor. se o app.py importar esse arquivo, esse bloco é ignorado, remover depois
 if __name__ == '__main__':
     nomeCompleto = 'ANA BEATRIZ FERREIRA' #simulação de nome
     logins_existentes = ['anabeat', 'anabira', 'anabera', 'abfanab', 'nabeatr', 'abeatri', 'beatriz'] #simulação de banco de dados com logins existentes
