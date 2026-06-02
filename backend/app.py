@@ -33,17 +33,7 @@ def cadastro():
 
     print(dados) #remover depois, so pra testar o postman
 
-    return jsonify({"mensagem": "funcionou"})
+    return jsonify({"login": login_final})
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=False) #esse reloader que tava dando o problema de inferno de recarregar. Checar depois se manter. acho que é so tirar o debug
-
-
-"""{
-    "nome": "Ana Beatriz Ferreira",
-    "cpf": "123.456.789-00",
-    "email": "ana@email.com",
-    "data_nascimento": "2001-04-09",
-    "cep": "04113-040",
-    "endereco": "Paulista"
-}"""

@@ -18,3 +18,11 @@ class Usuario(Base):
 
 Base.metadata.create_all(engine) #pegua a base e cria a tabela de fato
 Session = sessionmaker(bind=engine)
+
+def limpar_banco(): #por enquanto, pra deletar o banco. remofer if__name__ também se for tirar daqui
+    Base.metadata.drop_all(engine)
+    Base.metadata.create_all(engine)
+    print("banco limpo e recriado")
+
+if __name__ == '__main__':
+    limpar_banco()
