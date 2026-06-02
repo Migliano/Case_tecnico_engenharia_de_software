@@ -36,7 +36,7 @@ def cadastro():
     return jsonify({"mensagem": "funcionou"})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, use_reloader=False) #esse reloader que tava dando o problema de inferno de recarregar. Checar depois se manter. acho que é so tirar o debug
 
 
 """{
