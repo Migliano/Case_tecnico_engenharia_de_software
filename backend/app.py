@@ -1,8 +1,10 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS #para o erro de cors no console. remover depois
 
 from login_generator import gerar_login
 from database import Usuario, Session
 app = Flask(__name__)
+CORS(app)
 
 @app.route("/cadastro", methods=['POST'])
 def cadastro():

@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- html boilerplate aleatório. Usar liveserver-->
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8">
@@ -9,16 +8,27 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <h2> Faça seu Cadastro!</h2>
-    <form id="formCadastro">
-        <label for = "nome"> Nome Completo </label>
-        <input type = "text" id = "nome">
+    <h2>Faça seu Cadastro!</h2>
+    <form id="formCadastro" onsubmit="enviarCadastro(event)">
+        <label for="nome">Nome Completo</label>
+        <input type="text" id="nome">
 
-        <label for = "cpf"> CPF </label>
+        <label for="cpf">CPF</label>
         <input type="text" id="cpf">
 
-        <!-- falta os outros campos-->
-         <button type = "button"> Enviar! </button>
+        <label for="email">Email</label>
+        <input type="text" id="email">
+
+        <label for="data_nascimento">Data de Nascimento</label>
+        <input type="text" id="data_nascimento">
+
+        <label for="cep">CEP</label>
+        <input type="text" id="cep">
+
+        <label for="endereco">Endereço</label>
+        <input type="text" id="endereco">
+
+        <button type="submit">Enviar!</button>
     </form>
     <script src="script.js"></script>
   </body>
