@@ -23,12 +23,19 @@
         <input type="text" id="data_nascimento">
 
         <label for="cep">CEP</label>
-        <input type="text" id="cep">
+        <!-- onblur dispara quando o usuário tira o foco do campo (Tab tmb funciona). 
+         passando document.getElementById('cep').value em vez de só 'cep' pq dentro de um atributo HTML, 'cep' não existe como variável JS 
+         então tem que buscar o elemento pelo id e extrair o .value na mão -->
+        <input type="text" id="cep" onblur="buscarLogradouro(document.getElementById('cep').value)">
 
         <label for="endereco">Endereço</label>
         <input type="text" id="endereco">
 
         <button type="submit">Enviar!</button>
+
+        <!-- getElementById pega um único elemento pelo id (que tem que ser único na página inteira) e retorna esse elemento direto.
+             getElementsByClassName retornaria uma coleção de elementos (porque class pode repetir) — teria que fazer [0] pra acessar o primeiro-->
+        <div id="resultado"></div>   <!-- esse mostra o login na tela-->
     </form>
     <script src="script.js"></script>
   </body>
