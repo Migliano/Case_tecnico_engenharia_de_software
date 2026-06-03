@@ -76,6 +76,8 @@ function sanitizarCampos(){
     } else if (regexcpf.test(cpf) === false){
         alert("O campo 'cpf' não parece ser um cpf válido, por favor, verifique!")
         return false
+    } else if (validaCPF(cpf) === false){ //regras de validação matemática do cpf
+    return false
     }
 
 
@@ -123,8 +125,6 @@ function sanitizarCampos(){
 }
 
 
-
-
 function buscarLogradouro(cep) {
 
     let url = "https://viacep.com.br/ws/" + cep + "/json/" 
@@ -138,3 +138,57 @@ function buscarLogradouro(cep) {
         document.getElementById('endereco').value = data.logradouro
     })
 }   
+
+function validaCPF(cpf){ //depois procurar um jeito de isso ficar menos bagunçado
+
+    //verificar se todos os numeros sao iguais
+    const digitos_Separados = cpf.split('') // aqui é pra investicar os casos de todos os numeros iguais. Essa array serve para dividir os digitos
+
+    if (digitos_Separados.every(digito => digito === digitos_Separados[0])){ // digito === digitos_separados[0] é o teste de fato. compara sempre com o primeiro
+        alert("O campo 'cpf' está invalido, por favor, verifique!")
+        return false
+    }
+
+
+    //verificar regras de construção do numero de cpf (de acordo com somatematica)
+    let peso = 10 //peso de cada digito, a regra consiste em multiplicar os digitos do cpf individualmente por um numero de peso máximo 10. o segundo peso 9... e assim por diante. esta variavel servirá para armazenar o "peso" que estamos adicionando a cada volta de um laço
+    let total = 0 //variavel para armazenar total da soma entre os caracteres * o peso de cada
+
+    for (i = 0; i <= 8; i++){ //laço para somar todos os digitos + a multiplicação do peso de cada
+
+        total += (parseInt(cpf[i])*peso)
+        peso = peso - 1 //serve para decair o peso, dãã
+    }
+
+    let resto = (total * 10) % 11 //aqui iniciaremos o calculo de verificação do primeiro. esta é a regra final
+    if (resto === 10){ //é por causa da regra de verificação de cpf. quando o resto da divisão é 10, deve-se considerar que o primeiro digito verificador é 0
+        resto = 0
+    }
+
+    if (resto === parseInt(cpf[9])){ //aqui termina a verificação do primeiro digito e se inicia a verificação do *segundo*
+        total = 0 //zerar a variável para refazer a somatoria
+        peso = 11 //a regra é a mesma mas começa com 11 e leva com conta o primeiro digito. então renomeamos o peso inicial e fazemos a mesma coisa que fizemos pro primeiro
+        
+        for (i = 0; i <= 9; i++){ //mesma coisa de antes, mas agora vamos até o elemento 10
+            total += (parseInt(cpf[i])*peso)
+            peso = peso - 1 
+        }
+        resto = (total * 10) % 11
+        if (resto === 10){ //é por causa da regra de verificação de cpf. quando o resto da divisão é 10, deve-se considerar que o primeiro digito verificador é 0
+            resto = 0
+    
+        }
+        if (resto === parseInt(cpf[10])){
+            return true
+
+        }else { // else do *segundo* digito
+            alert("O campo 'cpf' está invalido, por favor, verifique!")
+            return false
+        }
+
+    } else { // else do primeiro digito
+            alert("O campo 'cpf' está invalido, por favor, verifique!")
+            return false
+    } 
+
+}
