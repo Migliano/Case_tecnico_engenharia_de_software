@@ -24,5 +24,5 @@ def limpar_banco(): #por enquanto, pra deletar o banco. remofer if__name__ tamb√
     Base.metadata.create_all(engine)
     print("banco limpo e recriado")
 
-if __name__ == '__main__':
-    limpar_banco()
+if __name__ == '__main__': 
+    limpar_banco() #depois remover, √© so pra esvaziar o banco

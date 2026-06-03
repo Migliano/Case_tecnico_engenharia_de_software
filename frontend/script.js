@@ -59,56 +59,62 @@ function sanitizarCampos(){
     let endereco = document.getElementById('endereco').value
 
     if (nome === ''){ //depois vou fazer uma função pra isso, por enquanto ta bom
-
-        alert("O campo 'nome' não pode estar vazio")
+        alert("O campo 'nome' não pode estar vazio, por favor, verifique!")
         return false
     } else if (nome.length > 100){
-        alert("O campo 'nome' não pode ter mais que 100 caracteres")
+        alert("O campo 'nome' não pode ter mais que 100 caracteres, por favor, verifique!")
         return false
     }
 
+    const regexcpf = /^\d{11}$/; //regex padrão para conferencia de cpf de 11 numeros. talvez depois implementar máscara de input para inserir . e -
     if (cpf === ''){
-
-        alert("O campo 'cpf' não pode estar vazio")
+        alert("O campo 'cpf' não pode estar vazio, por favor, verifique!")
         return false
-    } else if (cpf.length > 100){
-        alert("O campo 'cpf' não pode ter mais que 100 caracteres")
+    } else if (cpf.length > 11){
+        alert("O campo 'cpf' não pode ter mais que 11 caracteres, por favor, verifique!")
+        return false
+    } else if (regexcpf.test(cpf) === false){
+        alert("O campo 'cpf' não parece ser um cpf válido, por favor, verifique!")
         return false
     }
 
-    if (email === ''){
 
-        alert("O campo 'email' não pode estar vazio")
+    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; //regex simples para conferencia do email
+    if (email === ''){
+        alert("O campo 'email' não pode estar vazio, por favor, verifique!")
         return false
     } else if (email.length > 100){
-        alert("O campo 'email' não pode ter mais que 100 caracteres")
+        alert("O campo 'email' não pode ter mais que 100 caracteres, por favor, verifique!")
+        return false
+    } else if (regexEmail.test(email) === false){
+        alert("O campo 'email' não parece ser um endereço de e-mail válido, por favor, verifique!")
         return false
     }
+
 
     if (data_nascimento === ''){
-
-        alert("O campo 'data_nascimento' não pode estar vazio")
+        alert("O campo 'data_nascimento' não pode estar vazio, por favor, verifique!")
         return false
     } else if (data_nascimento.length > 100){
-        alert("O campo 'data_nascimento' não pode ter mais que 100 caracteres")
+        alert("O campo 'data_nascimento' não pode ter mais que 100 caracteres, por favor, verifique!")
         return false
     }
+
 
     if (cep === ''){
-
-        alert("O campo 'cep' não pode estar vazio")
+        alert("O campo 'cep' não pode estar vazio, por favor, verifique!")
         return false
-    } else if (cep.length > 100){
-        alert("O campo 'cep' não pode ter mais que 100 caracteres")
+    } else if (cep.length > 20){
+        alert("O campo 'cep' não pode ter mais que 20 caracteres, por favor, verifique!")
         return false
     }
 
-    if (endereco === ''){
 
-        alert("O campo 'endereco' não pode estar vazio")
+    if (endereco === ''){
+        alert("O campo 'endereco' não pode estar vazio, por favor, verifique!")
         return false
     } else if (endereco.length > 100){
-        alert("O campo 'endereco' não pode ter mais que 100 caracteres")
+        alert("O campo 'endereco' não pode ter mais que 100 caracteres, por favor, verifique!")
         return false
     }
 
