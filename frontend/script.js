@@ -2,7 +2,7 @@ function enviarCadastro(event) {
     
     event.preventDefault() // sem isso aqui o form manda um GET/POST e recarrega a página, aí a página some
 
-    let nome = document.getElementById('nome').value
+    let nome = document.getElementById('nome').value //pegar dados, depois posso fazer uma função disso talvez
     let cpf = document.getElementById('cpf').value
     let email = document.getElementById('email').value
     let data_nascimento = document.getElementById('data_nascimento').value
@@ -16,7 +16,8 @@ function enviarCadastro(event) {
     console.log(cep);
     console.log(endereco);
 
-    fetch('http://127.0.0.1:5000/cadastro', {
+    if (sanitizarCampos()){ // condicional para verificar saude dos dados. Por enquanto verifica tamanho minimo e maximo
+            fetch('http://127.0.0.1:5000/cadastro', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -41,7 +42,82 @@ function enviarCadastro(event) {
     })
 
     return false
+    }else {
+        return false
+    }
+
+
 }
+
+function sanitizarCampos(){
+
+    let nome = document.getElementById('nome').value //pegar dados
+    let cpf = document.getElementById('cpf').value
+    let email = document.getElementById('email').value
+    let data_nascimento = document.getElementById('data_nascimento').value
+    let cep = document.getElementById('cep').value
+    let endereco = document.getElementById('endereco').value
+
+    if (nome === ''){ //depois vou fazer uma função pra isso, por enquanto ta bom
+
+        alert("O campo 'nome' não pode estar vazio")
+        return false
+    } else if (nome.length > 100){
+        alert("O campo 'nome' não pode ter mais que 100 caracteres")
+        return false
+    }
+
+    if (cpf === ''){
+
+        alert("O campo 'cpf' não pode estar vazio")
+        return false
+    } else if (cpf.length > 100){
+        alert("O campo 'cpf' não pode ter mais que 100 caracteres")
+        return false
+    }
+
+    if (email === ''){
+
+        alert("O campo 'email' não pode estar vazio")
+        return false
+    } else if (email.length > 100){
+        alert("O campo 'email' não pode ter mais que 100 caracteres")
+        return false
+    }
+
+    if (data_nascimento === ''){
+
+        alert("O campo 'data_nascimento' não pode estar vazio")
+        return false
+    } else if (data_nascimento.length > 100){
+        alert("O campo 'data_nascimento' não pode ter mais que 100 caracteres")
+        return false
+    }
+
+    if (cep === ''){
+
+        alert("O campo 'cep' não pode estar vazio")
+        return false
+    } else if (cep.length > 100){
+        alert("O campo 'cep' não pode ter mais que 100 caracteres")
+        return false
+    }
+
+    if (endereco === ''){
+
+        alert("O campo 'endereco' não pode estar vazio")
+        return false
+    } else if (endereco.length > 100){
+        alert("O campo 'endereco' não pode ter mais que 100 caracteres")
+        return false
+    }
+
+
+    return true
+}
+
+
+
 
 function buscarLogradouro(cep) {
 
