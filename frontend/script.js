@@ -49,7 +49,7 @@ function enviarCadastro(event) {
 
 }
 
-function sanitizarCampos(){
+function sanitizarCampos(){ //aqui é o cerebro das validações de campo. No geral, faz a consulta de tamanho minimo e maimo de caracteres de cada campo + verificações especificas se necessário
 
     let nome = document.getElementById('nome').value //pegar dados
     let cpf = document.getElementById('cpf').value
@@ -80,7 +80,6 @@ function sanitizarCampos(){
     return false
     }
 
-
     const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; //regex simples para conferencia do email
     if (email === ''){
         alert("O campo 'email' não pode estar vazio, por favor, verifique!")
@@ -99,6 +98,8 @@ function sanitizarCampos(){
         return false
     } else if (data_nascimento.length > 100){
         alert("O campo 'data_nascimento' não pode ter mais que 100 caracteres, por favor, verifique!")
+        return false
+    } else if (validarData_Nascimento(data_nascimento)){ //checa se data de nascimento é futura
         return false
     }
 
@@ -124,20 +125,22 @@ function sanitizarCampos(){
     return true
 }
 
+//daqui pra baixo são so as funções que validam especificidades de campos especificos: email, cpf, data, cep
 
-function buscarLogradouro(cep) {
+function validarData_Nascimento(data_nascimento){ //checa se data de nascimento é futura, se for, retorna false
 
-    let url = "https://viacep.com.br/ws/" + cep + "/json/" 
+    const data_Atual = new Date()
+    const Nascimento = new Date(data_nascimento)
 
-    fetch(url, {
-    })
-    // mesmo padrão de antes: primeiro converte a resposta HTTP crua em objeto JS
-    .then(fedback => fedback.json())
-    // depois pega o campo logradouro que a API do ViaCEP retorna dentro do JSON e bota no campo de endereço
-    .then(data => {
-        document.getElementById('endereco').value = data.logradouro
-    })
-}   
+    if(Nascimento > data_Atual){
+        alert("A data em 'Data de Nascimento' não pode ser futura, por favor, verifique!")
+        return true
+
+    } else{
+        return false
+    }
+}
+
 
 function validaCPF(cpf){ //depois procurar um jeito de isso ficar menos bagunçado
 
@@ -192,3 +195,17 @@ function validaCPF(cpf){ //depois procurar um jeito de isso ficar menos bagunça
     } 
 
 }
+
+function buscarLogradouro(cep) {
+
+    let url = "https://viacep.com.br/ws/" + cep + "/json/" 
+
+    fetch(url, {
+    })
+    // mesmo padrão de antes: primeiro converte a resposta HTTP crua em objeto JS
+    .then(fedback => fedback.json())
+    // depois pega o campo logradouro que a API do ViaCEP retorna dentro do JSON e bota no campo de endereço
+    .then(data => {
+        document.getElementById('endereco').value = data.logradouro
+    })
+}   
