@@ -6,7 +6,7 @@ body {
     min-height: 100vh;
 }
 
-.container-formulario {
+.container_formulario {
     background-color: white;
     padding: 40px;
     border-radius: 8px;
@@ -33,5 +33,12 @@ button[type="submit"]:hover {
 #resultado {
     margin-top: 15px;
     font-weight: bold;
+    text-align: center;
     color: #003D6B;
+}
+
+button:disabled {
+    background-color: #aaaaaa !important; /* Bootstrap, provavelmente, estava sobreescrevendo o css e nao deixando o botao cinza. Isso resolveu */
+    border-color: #aaaaaa !important;
+    cursor: not-allowed;
 }

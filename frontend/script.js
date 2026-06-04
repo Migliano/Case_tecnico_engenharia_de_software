@@ -1,3 +1,6 @@
+let loginGerado = ''  // variavel para guardar o login (usado apenas na função de toggle o login)
+let loginVisivel = false  // controla se está mostrando ou escondendo
+
 function enviarCadastro(event) {
     
     event.preventDefault() // sem isso aqui o form manda um GET/POST e recarrega a página, aí a página some
@@ -44,13 +47,31 @@ function enviarCadastro(event) {
     })
     .then(data => { //data é o nome padrão para mostarr na tela, vai ter que usar pro fedback do CEP tmb
         // getElementById aqui retorna o elemento único com aquele id
-        document.getElementById('resultado').innerHTML = 'Seu login: ' + data.login //innetHTML mostra na tela o login
+        document.getElementById('botao_enviar').disabled = true
+
+        loginGerado = data.login //recebe o login na varaivel pra deixar armazenado
+        document.getElementById('seu_login').style.display = 'inline'
+        document.getElementById('login_texto').innerHTML = '*******'
+        document.getElementById('botao_olho').style.display = 'inline' 
     })
 
     return false
     }else {
         return false
     }
+}
+
+function mostrarLogin(login){
+
+    if (loginVisivel == false){
+        document.getElementById('login_texto').innerHTML = loginGerado
+    } else {
+        document.getElementById('login_texto').innerHTML = '*******'
+
+    }loginVisivel = !loginVisivel //inverter o estado do botão, se nao nuca troca por isso dava problema dããã
+
+
+
 }
 
 function sanitizarCampos(){ //aqui é o cerebro das validações de campo. No geral, faz a consulta de tamanho minimo e maimo de caracteres de cada campo + verificações especificas se necessário
