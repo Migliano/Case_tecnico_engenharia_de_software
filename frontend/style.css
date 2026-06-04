@@ -1,0 +1,37 @@
+body {
+    background-color: #003D6B;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container-formulario {
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 500px;
+}
+
+h2 {
+    color: #003D6B;
+    font-weight: bold;
+}
+
+button[type="submit"] {
+    background-color: #EC7000;
+    border: none;
+    width: 100%;
+    padding: 12px;
+}
+
+button[type="submit"]:hover {
+    background-color: #c45e00;
+}
+
+#resultado {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #003D6B;
+}
