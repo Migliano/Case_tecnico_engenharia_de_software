@@ -33,10 +33,16 @@ function enviarCadastro(event) {
     })
     // primeiro .then: o fetch devolve a resposta HTTP bruta (status, headers, body ainda fechado)
     // o .json() lê esse body e transforma em objeto
-    .then(fedback => fedback.json())
-    // segundo .then  recebe o objeto JS de verdade
-    // chamei de data pq vi que no youtube que chamam assim, pelo visto podia ser outor nome
-    .then(data => { //data é o nome padrão para mostarr na tela, vai ter que usar pro fedback do cep tmb
+    .then(fedback => {
+        if (!fedback.ok) { //negativa do ok pra apontar erro que chegou no backend!
+            return fedback.json().then(data => {
+            document.getElementById('resultado').innerText = 'Erro:' + data.erro
+        })
+    }
+        return fedback.json()
+
+    })
+    .then(data => { //data é o nome padrão para mostarr na tela, vai ter que usar pro fedback do CEP tmb
         // getElementById aqui retorna o elemento único com aquele id
         document.getElementById('resultado').innerHTML = 'Seu login: ' + data.login
     })
@@ -45,8 +51,6 @@ function enviarCadastro(event) {
     }else {
         return false
     }
-
-
 }
 
 function sanitizarCampos(){ //aqui é o cerebro das validações de campo. No geral, faz a consulta de tamanho minimo e maimo de caracteres de cada campo + verificações especificas se necessário
