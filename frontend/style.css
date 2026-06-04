@@ -19,6 +19,13 @@ h2 {
     font-weight: bold;
 }
 
+#botaoFazer_meu_cadastro {
+    background-color: #EC7000 !important; /* Bootstrap, provavelmente, estava sobreescrevendo o css e nao deixando o botao da cor que eu queria. Isso resolveu */
+    border-color: #EC7000 !important;
+    width: 100%;
+    padding: 12px;
+}
+
 button[type="submit"] {
     background-color: #EC7000;
     border: none;

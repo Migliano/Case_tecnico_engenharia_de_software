@@ -10,7 +10,15 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div class = "container_formulario">
+    <div id='tela_boasvindas' class='container_formulario'>
+    <h2>Bem-vindo ao Sistema de Cadastro</h2>
+    <h5>Gere seu login único com segurança e praticidade</h5>
+    <button id= 'botaoFazer_meu_cadastro' onclick = 'irParaCadastro()' class = 'btn btn-primary' type = 'button'>
+      Fazer meu cadastro ➞
+    </button>
+    </div>
+
+    <div id="tela_cadastro" class = "container_formulario" style="display:none"> <!--Display troca quem esta aparecendo. no IU.JS que ele é alternado-->
       <img src="logo_tela_login.png" alt="logo" style="width: 80px; margin-bottom: 10px;">
       <h2>Faça seu Cadastro!</h2>
       <form id="formCadastro" onsubmit="enviarCadastro(event)">
@@ -61,7 +69,8 @@
             </button>
           </div>   
       </form>
-      <script src="script.js"></script>
     </div>
+    <script src="ui.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>

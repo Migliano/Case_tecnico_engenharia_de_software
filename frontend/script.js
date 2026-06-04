@@ -1,5 +1,3 @@
-let loginGerado = ''  // variavel para guardar o login (usado apenas na função de toggle o login)
-let loginVisivel = false  // controla se está mostrando ou escondendo
 
 function enviarCadastro(event) {
     
@@ -61,18 +59,6 @@ function enviarCadastro(event) {
     }
 }
 
-function mostrarLogin(login){
-
-    if (loginVisivel == false){
-        document.getElementById('login_texto').innerHTML = loginGerado
-    } else {
-        document.getElementById('login_texto').innerHTML = '*******'
-
-    }loginVisivel = !loginVisivel //inverter o estado do botão, se nao nuca troca por isso dava problema dããã
-
-
-
-}
 
 function sanitizarCampos(){ //aqui é o cerebro das validações de campo. No geral, faz a consulta de tamanho minimo e maimo de caracteres de cada campo + verificações especificas se necessário
 
