@@ -34,17 +34,17 @@ function enviarCadastro(event) {
     // primeiro .then: o fetch devolve a resposta HTTP bruta (status, headers, body ainda fechado)
     // o .json() lê esse body e transforma em objeto
     .then(fedback => {
-        if (!fedback.ok) { //negativa do ok pra apontar erro que chegou no backend!
-            return fedback.json().then(data => {
-            document.getElementById('resultado').innerText = 'Erro:' + data.erro
+        if (!fedback.ok) { //negativa do ok pra apontar erro que chegou no backend! OPOSTO DE 400
+            return fedback.json().then(data => { //abrir o erro que veio
+            document.getElementById('resultado').innerText = 'Erro:' + data.erro //mostra o erro pelo ID
         })
     }
-        return fedback.json()
+        return fedback.json() //se nao deu erro, segue pro porximo .then
 
     })
     .then(data => { //data é o nome padrão para mostarr na tela, vai ter que usar pro fedback do CEP tmb
         // getElementById aqui retorna o elemento único com aquele id
-        document.getElementById('resultado').innerHTML = 'Seu login: ' + data.login
+        document.getElementById('resultado').innerHTML = 'Seu login: ' + data.login //innetHTML mostra na tela o login
     })
 
     return false
