@@ -174,6 +174,8 @@ Garantia de unicidade
 Antes de gerar, o sistema consulta todos os logins existentes no banco. Se um candidato já existir, avança para o próximo. O sistema só salva quando encontra um login livre.
 
 # Validações
+> Evidências de execução dos testes disponíveis em [`docs/Evidencias_de_Testes.pdf`](docs/Evidencias_de_Testes.pdf)
+
 Frontend (JavaScript)
 
 Campos obrigatórios
@@ -216,6 +218,18 @@ Flask Application Factory — padrão create_app() que permite configurar a apli
 Separação frontend/backend — o Flask serve o frontend via templates/ e static/, mantendo a separação de responsabilidades enquanto simplifica a execução (um servidor só).
 CPF como String — armazenado como texto para preservar zeros à esquerda (ex: 001.234.567-89). O mesmo vale para o CEP.
 Validação dupla — frontend para experiência do usuário, backend como barreira de segurança real. Quem conhece a API pode bypassar o JavaScript.
+
+## Evidências de Testes
+
+O documento [`docs/Evidencias_de_Testes.pdf`](docs/Evidencias_de_Testes.pdf) contém 12 testes manuais cobertos com prints e GIFs animados, incluindo:
+
+- Cadastro completo com geração de login
+- Validações de frontend (CPF, e-mail, data futura, campos obrigatórios)
+- Validação de backend via Postman — simulando bypass do frontend
+- Preenchimento automático de endereço via ViaCEP
+- Comportamento do login ocultado com botão de revelar
+
+Também disponível em formato editável: [`docs/Evidencias_de_Testes.docx`](docs/Evidencias_de_Testes.docx)
 
 # Melhorias Futuras
 

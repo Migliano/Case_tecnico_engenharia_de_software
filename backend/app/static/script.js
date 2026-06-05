@@ -10,13 +10,6 @@ function enviarCadastro(event) {
     let cep = document.getElementById('cep').value
     let endereco = document.getElementById('endereco').value
 
-    console.log(nome);
-    console.log(cpf);
-    console.log(email);
-    console.log(data_nascimento);
-    console.log(cep);
-    console.log(endereco);
-
     if (sanitizarCampos()){ // condicional para verificar saude dos dados. Por enquanto verifica tamanho minimo e maximo
             fetch('/cadastro', {
         method: 'POST',
