@@ -18,7 +18,7 @@ function enviarCadastro(event) {
     console.log(endereco);
 
     if (sanitizarCampos()){ // condicional para verificar saude dos dados. Por enquanto verifica tamanho minimo e maximo
-            fetch('http://127.0.0.1:5000/cadastro', {
+            fetch('/cadastro', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

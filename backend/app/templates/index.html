@@ -7,10 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Projeto Cadastro</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/static/style.css">
   </head>
   <body>
     <div id='tela_boasvindas' class='container_formulario'>
+      <img src="/static/logo_tela_login.png" alt="logo" style="width: 80px; margin-bottom: 10px;">
     <h2>Bem-vindo ao Sistema de Cadastro</h2>
     <h5>Gere seu login único com segurança e praticidade</h5>
     <button id= 'botaoFazer_meu_cadastro' onclick = 'irParaCadastro()' class = 'btn btn-primary' type = 'button'>
@@ -19,7 +20,7 @@
     </div>
 
     <div id="tela_cadastro" class = "container_formulario" style="display:none"> <!--Display troca quem esta aparecendo. no IU.JS que ele é alternado-->
-      <img src="logo_tela_login.png" alt="logo" style="width: 80px; margin-bottom: 10px;">
+      <img src="/static/logo_tela_login.png" alt="logo" style="width: 80px; margin-bottom: 10px;">
       <h2>Faça seu Cadastro!</h2>
       <form id="formCadastro" onsubmit="enviarCadastro(event)">
 
@@ -70,7 +71,7 @@
           </div>   
       </form>
     </div>
-    <script src="ui.js"></script>
-    <script src="script.js"></script>
+    <script src="/static/ui.js"></script>
+    <script src="/static/script.js"></script>
   </body>
 </html>

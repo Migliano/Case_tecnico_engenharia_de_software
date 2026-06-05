@@ -32,19 +32,18 @@ def cadastro():
     login_final = gerar_login(dados['nome'], logins_existentes)           #chama função gerar_login la do login_generator. Passa o nome completo (classe nome de "dados") e os logins_existentes (repeti o nome pra nao confundir. talvez faça a mesma coisa para o nomecompleto, vou ver se fica ruim de debugar)
     
     novo_usuario = Usuario(
-    nome = dados['nome'],
-    cpf = dados['cpf'],
-    email = dados['email'],
-    data_nascimento = dados['data_nascimento'],
-    cep = dados['cep'],
-    endereco = dados['endereco'],
-    login = login_final
-)
+        nome = dados['nome'],
+        cpf = dados['cpf'],
+        email = dados['email'],
+        data_nascimento = dados['data_nascimento'],
+        cep = dados['cep'],
+        endereco = dados['endereco'],
+        login = login_final
+    )
 
     session.add(novo_usuario)
     session.commit()
 
-    print(dados) #remover depois, so pra testar o postman
 
     return jsonify({"login": login_final})
 
