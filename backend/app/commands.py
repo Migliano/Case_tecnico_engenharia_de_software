@@ -1,6 +1,10 @@
-import click
-from flask.cli import with_appcontext
+#Aqui serão apenas atalhos para limpar o banco e cria-lo caso necessário
 
+import click
+import pandas as pd
+import os
+
+from flask.cli import with_appcontext
 from .extensions import db
 from .models import Usuario
 
@@ -9,20 +13,26 @@ from .models import Usuario
 def create_tables():
     db.create_all()
 
-    generico = Usuario(
-        nome = "Usuário Genérico",
-        login = "usuario.genérico",
-        cpf = "50252073800",
-        email = "usuario@genérico.com",
-        data_nascimento = "01/01/1900", #data_nascimento tem que ser string por causa da tabela de limites, por date deve dar muito trabalho
-        cep = "00000000",
-        endereco = "Endereço Genérico"
-    )
+#removi o usuario generico, nao precisa mais. so inserir a massa
 
-    db.session.add(generico)
-    db.session.commit()
+    caminhoTXT = os.path.join(os.path.dirname(__file__), '..', 'massa_dados.txt')
+    df = pd.read_table(caminhoTXT, sep='|')
 
-    click.echo("Tabelas criadas com sucesso!")
+    for index, row in df.iterrows():
+        usuario = Usuario(
+            nome = row["nome"],
+            cpf = row["documento"],
+            email = row["email"],
+            data_nascimento = row["dataNascimento"],
+            login = row["login"],
+            cep = "",
+            endereco = ""
+        )
+        db.session.add(usuario)
+        db.session.commit()
+
+    click.echo("Usuários massa inseridos!")
+
 
 @click.command(name='drop_tables')
 @with_appcontext

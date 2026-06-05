@@ -1,3 +1,5 @@
+#Gerar logins únicos a partir do nome
+
 def gerar_login(nomeCompleto, logins_existentes):          #função para efetivamente gerar o login: passa pelos generators e compara com o banco, caso ja exista o login, tenta o proximo generator
 
     opcoes_de_Login = [
