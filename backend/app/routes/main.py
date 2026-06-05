@@ -16,7 +16,6 @@ def index():
 @main.route("/cadastro", methods=['POST'])
 def cadastro():
     dados = request.get_json() #pega os dados do front
-    #session = Session()
 
     todos_usuarios = Usuario.query.all()
 
@@ -28,7 +27,7 @@ def cadastro():
     erro = sanity_checkar_campos(dados)
 
     if erro:
-        return jsonify({"erro": erro}), 400
+        return jsonify({"erro": erro}), 400 #requisição invalida, dado invalido la do front. pra ver se é culpa do input, nao do servidor
 
     """logins_existentes é passado como parâmetro e não variável global pq se fosse global,
     ia buscar os logins só uma vez quando o servidor sobe e ficaria desatualizado conforme novos usuários entram.

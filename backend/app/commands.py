@@ -15,7 +15,7 @@ def create_tables():
 
 #removi o usuario generico, nao precisa mais. so inserir a massa
 
-    caminhoTXT = os.path.join(os.path.dirname(__file__), '..', 'massa_dados.txt')
+    caminhoTXT = os.path.join(os.path.dirname(__file__), '..', 'massa_dados.txt') #__file__ é esse arquivo mesmo (commands.py). o '..' sobe uma pasta pra chegar em backend/, morada do txt
     df = pd.read_table(caminhoTXT, sep='|')
 
     for index, row in df.iterrows():

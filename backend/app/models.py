@@ -12,14 +12,6 @@ class Usuario(db.Model):
     cep = db.Column (db.String, nullable = True) #tem que ser string por conta dos 00 no começo, deixei true por causa da massa inicial
     endereco = db.Column (db.String, nullable = True) #deixei true por causa da massa inicial
 
-    def __repr__(self):
+    def __repr__(self): #magia de python. uso para debugar quando faz p´rint(usuario) no terminal
         return f"<Usuario {self.nome}>"
 
-
-#def limpar_banco(): #por enquanto, pra deletar o banco. remofer if__name__ também se for tirar daqui
-#    Base.metadata.drop_all(engine)
-#    Base.metadata.create_all(engine)
-#    print("banco limpo e recriado")
-
-#if __name__ == '__main__': 
-#    limpar_banco() #depois remover, é so pra esvaziar o banco

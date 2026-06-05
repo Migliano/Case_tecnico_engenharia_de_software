@@ -2,7 +2,7 @@ let loginGerado = ''  // variavel para guardar o login (usado apenas na função
 let loginVisivel = false  // controla se está mostrando ou escondendo
 
 
-function irParaCadastro(){
+function irParaCadastro(){ //fazer a troca de telas
     document.getElementById('tela_boasvindas').style.display = 'none'
     document.getElementById('tela_cadastro').style.display = 'block'
 
