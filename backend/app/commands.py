@@ -15,6 +15,10 @@ def create_tables():
 
 #removi o usuario generico, nao precisa mais. so inserir a massa
 
+    if Usuario.query.count() > 0: #se já tem dados no banco, pula a inserção — evita erro de login duplicado no restart do container
+        click.echo("Banco já populado, pulando inserção.")
+        return
+
     caminhoTXT = os.path.join(os.path.dirname(__file__), '..', 'massa_dados.txt') #__file__ é esse arquivo mesmo (commands.py). o '..' sobe uma pasta pra chegar em backend/, morada do txt
     df = pd.read_table(caminhoTXT, sep='|')
 
