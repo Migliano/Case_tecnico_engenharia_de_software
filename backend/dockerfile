@@ -1,4 +1,4 @@
-FROM python:3.11-slim
+FROM python:3.14-slim
 
 WORKDIR /app
 
@@ -10,4 +10,4 @@ COPY . .
 ENV FLASK_APP=run
 ENV FLASK_RUN_HOST=0.0.0.0
 
-CMD sh -c "flask create_tables && flask run"
+CMD ["sh", "-c", "flask create_tables && flask run"]

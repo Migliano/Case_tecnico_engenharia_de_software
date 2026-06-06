@@ -21,11 +21,18 @@ JavaScript (Vanilla)
 Bootstrap 5.3
 Bootstrap Icons
 
+Infraestrutura
+
+Docker
+Docker Compose
+
 
 # Estrutura do Projeto
 ```
 Case_tecnico_engenharia_de_software/
 ├── backend/
+│   ├── dockerfile              ← define a imagem Docker (base, dependências e comando de inicialização)
+│   ├── .dockerignore           ← arquivos ignorados no build (venv, cache, banco de dados)
 │   ├── run.py                  ← inicia o servidor
 │   ├── massa_dados.txt         ← registros iniciais
 │   ├── requirements.txt        ← dependências do projeto
@@ -46,6 +53,7 @@ Case_tecnico_engenharia_de_software/
 │           ├── script.js       ← lógica de formulário e fetch
 │           ├── ui.js           ← funções de interface (toggle, troca de tela)
 │           └── style.css       ← identidade visual
+├── docker-compose.yml          ← orquestração dos serviços
 └── README.md
 ```
 
@@ -98,6 +106,32 @@ python run.py
 **6. Acesse a aplicação**
 
 http://127.0.0.1:5000
+
+# Como Rodar com Docker
+Pré-requisitos
+
+Docker
+Docker Compose
+
+Passo a passo
+
+**1. Clone o repositório**
+```bash
+git clone https://github.com/Migliano/Case_tecnico_engenharia_de_software.git
+cd Case_tecnico_engenharia_de_software
+```
+
+**2. Suba os containers**
+```bash
+docker compose up --build
+```
+Este comando constrói a imagem, cria o banco, popula com os 20 registros iniciais e sobe o servidor.
+
+**3. Acesse a aplicação**
+
+http://localhost:5000
+
+O banco de dados é persistido em `backend/app/database/` via volume mapeado no `docker-compose.yml`.
 
 # Endpoints da API
 
@@ -210,6 +244,18 @@ flask --app run create_tables
 
 # Limpar banco
 flask --app run drop_tables
+```
+
+Docker
+```bash
+# Subir os containers (com rebuild)
+docker compose up --build
+
+# Subir em segundo plano
+docker compose up -d
+
+# Parar os containers
+docker compose down
 ```
 
 # Decisões Técnicas
